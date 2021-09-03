@@ -12,6 +12,17 @@ script = ExtResource( 3 )
 [node name="cat_planet" parent="." instance=ExtResource( 1 )]
 
 [node name="spawn_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="spawn_timer_2" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="spawn_timer_3" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="spawn_timer_2" to="." method="_on_spawn_timer_2_timeout"]
+[connection signal="timeout" from="spawn_timer_3" to="." method="_on_spawn_timer_3_timeout"]

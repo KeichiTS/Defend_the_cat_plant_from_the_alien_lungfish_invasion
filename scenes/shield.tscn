@@ -21,7 +21,7 @@ polygon = PoolVector2Array( -56.0142, -142.987, -56.1466, -126.433, -13.9939, -1
 position = Vector2( 170, 0 )
 
 [node name="shoot_timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 
 [node name="cannon_sprite" type="Sprite" parent="."]

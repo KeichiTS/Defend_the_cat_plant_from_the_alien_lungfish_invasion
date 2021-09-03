@@ -1,9 +1,9 @@
 extends Area2D
 
 var target = Vector2(400,300)
-var speed = 100
+export var speed = 100
 var dir = Vector2(0,-1) setget set_dir
-var hp = 2
+export var hp = 2
 
 func _ready():
 	pass

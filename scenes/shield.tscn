@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/cannon.png" type="Texture" id=1]
+[ext_resource path="res://sprites/shield.png" type="Texture" id=2]
+[ext_resource path="res://scripts/shield.gd" type="Script" id=3]
+
+[node name="shield" type="Area2D"]
+position = Vector2( 400, 300 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 3 )
+
+[node name="shield_sprite" type="Sprite" parent="."]
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="poly" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+polygon = PoolVector2Array( -56.0142, -142.987, -56.1466, -126.433, -13.9939, -139.08, 24.9023, -136.763, 55.8293, -126.802, 55.9991, -142.987, 33.8828, -149.211, 8.85303, -152.257, -24.9858, -150.867 )
+
+[node name="muzzle" type="Position2D" parent="."]
+position = Vector2( 170, 0 )
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="cannon_sprite" type="Sprite" parent="."]
+position = Vector2( 150, 0 )
+rotation = 1.5708
+texture = ExtResource( 1 )
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

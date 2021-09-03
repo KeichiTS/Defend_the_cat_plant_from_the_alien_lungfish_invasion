@@ -11,19 +11,31 @@ func _ready():
 
 func _on_spawn_timer_timeout():
 	var en = enemy.instance()
+	var rect = randi()%2
+	if rect == 0:
+		en.scale.y *= -1
 	en.global_position = spawn_spot()
+	en.speed = rand_range(80,120)
 	get_parent().add_child(en)
 	$spawn_timer.wait_time = rand_range(1,3)
 
 func _on_spawn_timer_2_timeout():
 	var en = enemy2.instance()
+	var rect = randi()%2
+	if rect == 0:
+		en.scale.y *= -1
 	en.global_position = spawn_spot()
 	get_parent().add_child(en)
+	en.speed = rand_range(180,220)
 	$spawn_timer_2.wait_time = rand_range(4,8)
 
 func _on_spawn_timer_3_timeout():
 	var en = enemy3.instance()
+	var rect = randi()%2
+	if rect == 0:
+		en.scale.y *= -1
 	en.global_position = spawn_spot()
+	en.speed = rand_range(30,70)
 	get_parent().add_child(en)
 	$spawn_timer_3.wait_time = rand_range(10,20)
 
@@ -31,13 +43,11 @@ func spawn_spot():
 	var spawner_area = randi()%4
 	var enemy_position
 	if spawner_area == 0:
-		enemy_position = Vector2(rand_range(-50,0), rand_range(-50,650))
+		enemy_position = Vector2(rand_range(-150,-100), rand_range(-100,700))
 	elif spawner_area == 1:
-		enemy_position = Vector2(rand_range(800,850), rand_range(-50,650))
+		enemy_position = Vector2(rand_range(900,950), rand_range(-100,700))
 	elif spawner_area == 2:
-		enemy_position = Vector2(rand_range(0,800), rand_range(-50,0))
+		enemy_position = Vector2(rand_range(0,800), rand_range(-150,-100))
 	elif spawner_area == 3:
-		enemy_position = Vector2(rand_range(0,800), rand_range(600,650))
+		enemy_position = Vector2(rand_range(0,800), rand_range(700,750))
 	return(enemy_position)
-
-

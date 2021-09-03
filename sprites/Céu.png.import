@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/salungfish.png-85039047c7ef65c9efe91fda412c2f19.stex"
+path="res://.import/Céu.png-a9add8824687a0aba651154971868c2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/salungfish.png"
-dest_files=[ "res://.import/salungfish.png-85039047c7ef65c9efe91fda412c2f19.stex" ]
+source_file="res://sprites/Céu.png"
+dest_files=[ "res://.import/Céu.png-a9add8824687a0aba651154971868c2e.stex" ]
 
 [params]
 

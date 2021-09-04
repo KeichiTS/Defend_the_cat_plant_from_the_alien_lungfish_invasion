@@ -10,6 +10,7 @@ func _ready():
 	randomize()
 	$cat_planet.connect("hited",self,"on_hited") 
 	$cat_planet.connect("death",self, "on_death")
+	
 
 func _process(delta):
 	$points.text = "POINTS:\n" + str(POINTS.points)

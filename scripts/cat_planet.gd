@@ -6,7 +6,7 @@ signal death()
 
 func _ready():
 	pass
-
+	
 
 
 func _on_collision_area_entered(area):

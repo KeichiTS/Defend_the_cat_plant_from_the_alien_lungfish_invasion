@@ -17,11 +17,21 @@ texture = ExtResource( 1 )
 hframes = 3
 
 [node name="poly" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -0.561279 )
 rotation = 1.5708
+polygon = PoolVector2Array( -56.0142, -142.987, -56.1466, -126.433, -13.9939, -139.08, 24.9023, -136.763, 55.8293, -126.802, 55.9991, -142.987, 33.8828, -149.211, 8.85303, -152.257, -24.9858, -150.867 )
+
+[node name="polyb" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -0.561 )
+rotation = -1.5708
 polygon = PoolVector2Array( -56.0142, -142.987, -56.1466, -126.433, -13.9939, -139.08, 24.9023, -136.763, 55.8293, -126.802, 55.9991, -142.987, 33.8828, -149.211, 8.85303, -152.257, -24.9858, -150.867 )
 
 [node name="muzzle" type="Position2D" parent="."]
 position = Vector2( 170, 0 )
+
+[node name="muzzleb" type="Position2D" parent="."]
+visible = false
+position = Vector2( -170, 0 )
 
 [node name="shoot_timer" type="Timer" parent="."]
 wait_time = 0.15
@@ -32,5 +42,13 @@ position = Vector2( 150, 0 )
 rotation = 1.5708
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
+
+[node name="cannon_spriteb" type="Sprite" parent="."]
+visible = false
+position = Vector2( -150, 0 )
+rotation = 1.5708
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 2 )
+flip_v = true
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]

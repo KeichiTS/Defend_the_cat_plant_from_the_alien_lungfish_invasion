@@ -4,9 +4,18 @@ var bullet = preload("res://scenes/bullet.tscn")
 
 enum {ready, cd}
 var status = ready
+var double_shot = false
 
 func _ready():
-	pass
+	$polyb.disabled = true
+	POINTS.connect("upgrade",self,"upgrade_gun")
+
+func upgrade_gun():
+	$polyb.disabled = false
+	$cannon_spriteb.show()
+	$muzzleb.show()
+	$shield_sprite.frame = 1
+	double_shot = true
 
 func _process(delta):
 	
@@ -16,6 +25,11 @@ func _process(delta):
 			bull.global_position = $muzzle.global_position
 			bull.dir = Vector2(cos(rotation), sin(rotation)).normalized()
 			get_parent().add_child(bull)
+			if double_shot:
+				var bullb = bullet.instance()
+				bullb.global_position = $muzzleb.global_position
+				bullb.dir = Vector2(-cos(rotation), -sin(rotation)).normalized()
+				get_parent().add_child(bullb)
 			status = cd
 			$shoot_timer.start()
 	look_at(get_global_mouse_position())

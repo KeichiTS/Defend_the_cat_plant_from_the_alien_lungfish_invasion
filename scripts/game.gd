@@ -5,6 +5,15 @@ var enemy2 = preload("res://scenes/enemy2.tscn")
 var enemy3 = preload("res://scenes/enemy3.tscn")
 var powerup = preload("res://scenes/upgrade.tscn")
 
+#var trans_bg2 = $background/bg2.modulate.a
+#var trans_bg3 = $background/bg3.modulate.a
+#var trans_bg4 = $background/bg4.modulate.a
+
+var trans_bg2_status = 0
+var trans_bg3_status = 0
+var trans_bg4_status = 0
+
+
 
 func _ready():
 	randomize()
@@ -14,7 +23,34 @@ func _ready():
 
 func _process(delta):
 	$points.text = "POINTS:\n" + str(POINTS.points)
-
+	#######
+	if trans_bg2_status == 0:
+		$background/bg2.modulate.a -= delta
+		if $background/bg2.modulate.a <= 0.00:
+			trans_bg2_status = 1
+	else:
+		$background/bg2.modulate.a += delta
+		if $background/bg2.modulate.a >= 1:
+			trans_bg2_status = 0
+	##########
+	if trans_bg3_status == 0:
+		$background/bg3.modulate.a -= 0.5*delta
+		if $background/bg3.modulate.a <= 0.1:
+			trans_bg3_status = 1
+	else:
+		$background/bg3.modulate.a += 0.5*delta
+		if $background/bg3.modulate.a >= 1:
+			trans_bg3_status = 0
+	##########
+	if trans_bg4_status == 0:
+		$background/bg4.modulate.a -= 0.2*delta
+		if $background/bg4.modulate.a <= 0.2:
+			trans_bg4_status = 1
+	else:
+		$background/bg4.modulate.a += 0.2*delta
+		if $background/bg4.modulate.a >= 1:
+			trans_bg4_status = 0
+			
 func _on_spawn_timer_timeout():
 	var en = enemy.instance()
 	var rect = randi()%2
@@ -54,7 +90,8 @@ func _on_pu_timer_timeout():
 	pu.status = randi()%2
 	print(pu.status)
 	$spawn_area.get_parent().add_child(pu)
-	$pu_timer.wait_time = rand_range(20,40)
+	#$pu_timer.wait_time = rand_range(2,5)
+	$pu_timer.wait_time = rand_range(20,50)
 
 func spawn_spot():
 	var spawner_area = randi()%4

@@ -4,6 +4,7 @@ var target = Vector2(400,300)
 export var speed = 100
 export(int,"HP","Double_Shield") var status
 var dir = Vector2(0,-1) setget set_dir
+var light_count = 0 
 export var hp = 1
 
 
@@ -19,7 +20,16 @@ func _ready():
 func _process(delta):
 	var pos = (target - position).normalized()
 	translate(pos*speed*delta)
-	look_at(target)
+	rotate(delta)
+	if light_count == 0:
+		$light.energy += 3 * delta
+		if $light.energy >= 2:
+			light_count = 1
+	elif light_count <= 1:
+		$light.energy -= 3 * delta
+		if $light.energy <= .5:
+			light_count = 0
+	#look_at(target)
 
 func set_dir(val):
 	dir = val 

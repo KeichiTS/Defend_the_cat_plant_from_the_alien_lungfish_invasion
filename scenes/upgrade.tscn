@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/powerup.png" type="Texture" id=1]
 [ext_resource path="res://scripts/upgrade.gd" type="Script" id=2]
+[ext_resource path="res://sprites/planet.png" type="Texture" id=3]
 [ext_resource path="res://sprites/powerup3.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -12,6 +13,11 @@ radius = 12.27
 ]]
 script = ExtResource( 2 )
 status = 2
+
+[node name="light" type="Light2D" parent="."]
+scale = Vector2( 0.1, 0.12 )
+texture = ExtResource( 3 )
+energy = 0.0
 
 [node name="pu1" type="Sprite" parent="."]
 scale = Vector2( 0.05, 0.05 )

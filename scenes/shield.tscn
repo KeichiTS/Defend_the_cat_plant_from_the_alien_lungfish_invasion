@@ -51,4 +51,9 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 flip_v = true
 
+[node name="upgrade_timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="upgrade_timer" to="." method="_on_upgrade_timer_timeout"]

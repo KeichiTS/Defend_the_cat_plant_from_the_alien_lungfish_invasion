@@ -4,18 +4,34 @@ var bullet = preload("res://scenes/bullet.tscn")
 
 enum {ready, cd}
 var status = ready
+var upgrades = 0
 var double_shot = false
 
 func _ready():
 	$polyb.disabled = true
-	POINTS.connect("upgrade",self,"upgrade_gun")
+	#upgrade_strong_shield()
+	POINTS.connect("upgrade",self,"upgrade_shield")
 
-func upgrade_gun():
+func upgrade_shield(val):
+	if val == 0:
+		upgrade_double_shield()
+		$upgrade_timer.start()
+	
+func upgrade_double_shield():
 	$polyb.disabled = false
 	$cannon_spriteb.show()
 	$muzzleb.show()
 	$shield_sprite.frame = 1
 	double_shot = true
+
+	
+func disable_double_shield():
+	$polyb.disabled = true
+	$cannon_spriteb.hide()
+	$muzzleb.hide()
+	$shield_sprite.frame = 0
+	double_shot = false
+
 
 func _process(delta):
 	
@@ -37,3 +53,7 @@ func _process(delta):
 
 func _on_shoot_timer_timeout():
 	status = ready
+
+
+func _on_upgrade_timer_timeout():
+	disable_double_shield()

@@ -31,6 +31,7 @@ height = 92.6066
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 2 )
 hp = 1
+pt = 30
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.4, 0.4 )

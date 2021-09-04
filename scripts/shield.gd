@@ -18,7 +18,6 @@ func _process(delta):
 			get_parent().add_child(bull)
 			status = cd
 			$shoot_timer.start()
-	
 	look_at(get_global_mouse_position())
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/shidel.png" type="Texture" id=1]
 [ext_resource path="res://sprites/canon.png" type="Texture" id=2]
 [ext_resource path="res://scripts/shield.gd" type="Script" id=3]
+[ext_resource path="res://musics_sfx/Pew__004.ogg" type="AudioStream" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "event"
@@ -85,6 +86,10 @@ one_shot = true
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/event = SubResource( 1 )
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "sfx"
 
 [connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="upgrade_timer" to="." method="_on_upgrade_timer_timeout"]

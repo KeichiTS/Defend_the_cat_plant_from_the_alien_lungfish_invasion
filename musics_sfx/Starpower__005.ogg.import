@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Starpower__005.ogg-50052a563f44138b2277aa3aba49f394.oggstr"
+
+[deps]
+
+source_file="res://musics_sfx/Starpower__005.ogg"
+dest_files=[ "res://.import/Starpower__005.ogg-50052a563f44138b2277aa3aba49f394.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

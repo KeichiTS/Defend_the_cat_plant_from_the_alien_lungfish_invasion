@@ -13,6 +13,8 @@ func _process(delta):
 	$sprites.rotate(0.1*delta)
 	$light.rotate(0.05*delta)
 	change_sprite()
+	
+
 
 
 func _on_collision_area_entered(area):
@@ -20,6 +22,7 @@ func _on_collision_area_entered(area):
 		hp -= 1
 		emit_signal("hited", hp)
 		area.queue_free()
+		Music.play_explosion()
 		if hp <= 0:
 			emit_signal("death")
 			queue_free()
@@ -29,6 +32,7 @@ func _on_collision_area_entered(area):
 			if hp < 5:
 				hp += 1
 				emit_signal("hited", hp)
+				Music.play_powerup()
 			
 		elif area.status == 1:
 			POINTS.status = 0

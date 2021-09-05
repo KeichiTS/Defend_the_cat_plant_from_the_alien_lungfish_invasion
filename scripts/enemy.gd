@@ -29,6 +29,7 @@ func _on_enemy_area_entered(area):
 			if status == alive:
 				POINTS.points += pt
 			status = dead
+			Music.play_explosion()
 			$CollisionShape2D.disabled = true
 			$anim.play("anim")
 			yield($anim,"animation_finished")

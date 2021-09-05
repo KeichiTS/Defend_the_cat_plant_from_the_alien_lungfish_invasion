@@ -16,6 +16,7 @@ func upgrade_shield(val):
 	if val == 0:
 		upgrade_double_shield()
 		$upgrade_timer.start()
+		Music.play_powerup()
 	
 func upgrade_double_shield():
 	$polyb.disabled = false
@@ -49,6 +50,7 @@ func _process(delta):
 			status = cd
 			$anim.play("event")
 			$shoot_timer.start()
+			$shoot_sound.play()
 			yield($anim,"animation_finished")
 	look_at(get_global_mouse_position())
 

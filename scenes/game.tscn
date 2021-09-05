@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/cat_planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/shield.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://font/SfDistantGalaxy-0l3d.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://sprites/background3.png" type="Texture" id=6]
 [ext_resource path="res://sprites/background2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/clave.png" type="Texture" id=8]
+[ext_resource path="res://sprites/clave_hover.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Menu.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -35,6 +38,15 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 5 )
 
 [node name="game" type="Node2D"]
 script = ExtResource( 3 )
@@ -143,7 +155,177 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Volume_control" type="TextureButton" parent="."]
+pause_mode = 2
+margin_left = 389.781
+margin_top = 11.8977
+margin_right = 429.781
+margin_bottom = 51.8977
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="Menu" type="PopupPanel" parent="Menu"]
+pause_mode = 2
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -150.0
+margin_right = 250.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 500, 300 )
+theme = SubResource( 6 )
+popup_exclusive = true
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Menu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Menu/MarginContainer"]
+margin_right = 492.0
+margin_bottom = 292.0
+custom_constants/separation = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="Menu/Menu/MarginContainer/VBoxContainer"]
+margin_left = 204.0
+margin_top = 73.0
+margin_right = 287.0
+margin_bottom = 93.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 4 )
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
+margin_top = 95.0
+margin_right = 492.0
+margin_bottom = 135.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Audio" type="Label" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_top = 13.0
+margin_right = 94.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 94, 14 )
+text = "Volume"
+align = 1
+
+[node name="Volume" type="HSlider" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 104.0
+margin_right = 354.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 7
+
+[node name="Mute" type="CheckButton" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 364.0
+margin_right = 492.0
+margin_bottom = 40.0
+text = "mute"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
+margin_top = 137.0
+margin_right = 492.0
+margin_bottom = 177.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Audio" type="Label" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 13.0
+margin_right = 94.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 94, 14 )
+text = "Bkg music"
+align = 1
+
+[node name="Volume_bkg" type="HSlider" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 104.0
+margin_right = 354.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 7
+
+[node name="Mute_bkg" type="CheckButton" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 364.0
+margin_right = 492.0
+margin_bottom = 40.0
+text = "mute"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
+margin_top = 179.0
+margin_right = 492.0
+margin_bottom = 219.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 13.0
+margin_right = 94.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 94, 14 )
+text = "SFX"
+align = 1
+
+[node name="Volume_sfx" type="HSlider" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 104.0
+margin_right = 354.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 7
+
+[node name="Mute_sfx" type="CheckButton" parent="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 364.0
+margin_right = 492.0
+margin_bottom = 40.0
+text = "mute"
+
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="spawn_timer_2" to="." method="_on_spawn_timer_2_timeout"]
 [connection signal="timeout" from="spawn_timer_3" to="." method="_on_spawn_timer_3_timeout"]
 [connection signal="timeout" from="pu_timer" to="." method="_on_pu_timer_timeout"]
+[connection signal="pressed" from="Volume_control" to="." method="_on_Volume_control_pressed"]
+[connection signal="pressed" from="Menu/Menu/MarginContainer/VBoxContainer/Resume" to="Menu/Menu" method="_on_Button_pressed"]
+[connection signal="value_changed" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer/Volume" to="Menu/Menu" method="_on_Volume_value_changed"]
+[connection signal="toggled" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer/Mute" to="Menu/Menu" method="_on_CheckButton_toggled"]
+[connection signal="value_changed" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer2/Volume_bkg" to="Menu/Menu" method="_on_Volume_bkg_value_changed"]
+[connection signal="toggled" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer2/Mute_bkg" to="Menu/Menu" method="_on_Mute_bkg_toggled"]
+[connection signal="value_changed" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3/Volume_sfx" to="Menu/Menu" method="_on_Volume_sfx_value_changed"]
+[connection signal="toggled" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3/Mute_sfx" to="Menu/Menu" method="_on_Mute_sfx_toggled"]

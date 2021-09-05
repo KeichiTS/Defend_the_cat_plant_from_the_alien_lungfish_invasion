@@ -16,12 +16,19 @@ var trans_bg4_status = 0
 
 
 func _ready():
+	if !Music.is_playing:
+		Music.is_playing
+		Music.play_bkg()
 	$transition.play("event")
 	yield($transition,"animation_finished")
 	randomize()
 	$cat_planet.connect("hited",self,"on_hited") 
 	$cat_planet.connect("death",self, "on_death")
 	
+
+func _input(event):
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
 
 func _process(delta):
 	$points.text = "POINTS:\n" + str(POINTS.points)
@@ -122,3 +129,12 @@ func on_death():
 	get_tree().reload_current_scene()
 
 
+
+
+func _on_Volume_control_pressed():
+	$Menu/Menu.popup_centered()
+	get_tree().paused = true
+
+
+func _on_Volume_sfx_value_changed(value):
+	pass # Replace with function body.

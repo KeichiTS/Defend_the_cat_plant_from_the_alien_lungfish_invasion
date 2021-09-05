@@ -5,6 +5,9 @@ var enemy2 = preload("res://scenes/enemy2.tscn")
 var enemy3 = preload("res://scenes/enemy3.tscn")
 var powerup = preload("res://scenes/upgrade.tscn")
 
+var pre_name_selector = preload("res://scenes/name_selector.tscn")
+var pre_hiscore_table = preload("res://scenes/hi-score.tscn")
+
 #var trans_bg2 = $background/bg2.modulate.a
 #var trans_bg3 = $background/bg3.modulate.a
 #var trans_bg4 = $background/bg4.modulate.a
@@ -13,7 +16,7 @@ var trans_bg2_status = 0
 var trans_bg3_status = 0
 var trans_bg4_status = 0
 
-
+var hiscore = 0
 
 func _ready():
 	if !Music.is_playing:
@@ -67,7 +70,9 @@ func _on_spawn_timer_timeout():
 		en.scale.y *= -1
 	en.global_position = spawn_spot()
 	en.speed = rand_range(80,120)
-	$spawn_area.get_parent().add_child(en)
+	#$spawn_area.get_parent().add_child(en)
+	$spawn_area.add_child(en)
+	
 	$spawn_timer.wait_time = rand_range(1,3)
 
 func _on_spawn_timer_2_timeout():
@@ -76,7 +81,8 @@ func _on_spawn_timer_2_timeout():
 	if rect == 0:
 		en.scale.y *= -1
 	en.global_position = spawn_spot()
-	$spawn_area.get_parent().add_child(en)
+	#$spawn_area.get_parent().add_child(en)
+	$spawn_area.add_child(en)
 	en.speed = rand_range(180,220)
 	$spawn_timer_2.wait_time = rand_range(4,8)
 
@@ -87,7 +93,8 @@ func _on_spawn_timer_3_timeout():
 		en.scale.y *= -1
 	en.global_position = spawn_spot()
 	en.speed = rand_range(30,70)
-	$spawn_area.get_parent().add_child(en)
+	#$spawn_area.get_parent().add_child(en)
+	$spawn_area.add_child(en)
 	$spawn_timer_3.wait_time = rand_range(10,20)
 	
 func _on_pu_timer_timeout():
@@ -97,8 +104,7 @@ func _on_pu_timer_timeout():
 		pu.scale.y *= -1
 	pu.global_position = spawn_spot()
 	pu.status = randi()%2
-	print(pu.status)
-	$spawn_area.get_parent().add_child(pu)
+	$spawn_area.add_child(pu)
 	#$pu_timer.wait_time = rand_range(2,5)
 	$pu_timer.wait_time = rand_range(20,50)
 
@@ -120,15 +126,41 @@ func on_hited(hp):
 
 
 func on_death():
-	for i in range(10):
-		if POINTS.points > POINTS.hiscores[i]:
-			POINTS.hiscores[i] = POINTS.points
+	var index = 0
+	var name_selector = pre_name_selector.instance()
+	var hiscore_table = pre_hiscore_table.instance()
+	
+	for hs in POINTS.hiscores:
+		if POINTS.points > hs.score:
+			hs.score = POINTS.points
+			index = 1
 			break
-			
+		hiscore += 1
+	
+	$spawn_timer.queue_free()
+	$spawn_timer_2.queue_free()
+	$spawn_timer_3.queue_free()
+	$pu_timer.queue_free()
+	$spawn_area.queue_free()
+	$shield.queue_free()
+	
+	if index == 1:
+		add_child(name_selector)
+		name_selector.connect("finished", self, "on_name_selector_finished")
+		yield(name_selector,"finished")
+	
+	name_selector.queue_free()
+	$life.modulate.a = 0
+	$points.modulate.a = 0
+	$play.visible = true
+	$play.disabled = false
+	
+	add_child(hiscore_table)
+	
 	POINTS.points = 0 
-	get_tree().reload_current_scene()
-
-
+	
+	
+	#get_tree().reload_current_scene()
 
 
 func _on_Volume_control_pressed():
@@ -138,3 +170,12 @@ func _on_Volume_control_pressed():
 
 func _on_Volume_sfx_value_changed(value):
 	pass # Replace with function body.
+
+func on_name_selector_finished(val):
+	#var index = POINTS.hiscores.find(hiscore)
+	POINTS.hiscores[hiscore].nome = val
+	print(POINTS.hiscores)
+
+
+func _on_play_pressed():
+	get_tree().reload_current_scene()

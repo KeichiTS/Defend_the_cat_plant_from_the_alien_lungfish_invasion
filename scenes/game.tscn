@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/cat_planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/shield.tscn" type="PackedScene" id=2]
@@ -68,6 +68,14 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=10]
 outline_size = 2
 outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+
+[sub_resource type="DynamicFont" id=12]
+size = 32
+outline_size = 2
+outline_color = Color( 0.270588, 0.596078, 0.329412, 1 )
 font_data = ExtResource( 5 )
 
 [node name="game" type="Node2D"]
@@ -345,6 +353,20 @@ margin_bottom = 40.0
 custom_fonts/font = SubResource( 8 )
 text = "mute"
 
+[node name="play" type="Button" parent="."]
+visible = false
+margin_left = 300.0
+margin_top = 545.0
+margin_right = 500.0
+margin_bottom = 585.0
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
+disabled = true
+text = "RESTART"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="spawn_timer_2" to="." method="_on_spawn_timer_2_timeout"]
 [connection signal="timeout" from="spawn_timer_3" to="." method="_on_spawn_timer_3_timeout"]
@@ -357,3 +379,4 @@ text = "mute"
 [connection signal="toggled" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer2/Mute_bkg" to="Menu/Menu" method="_on_Mute_bkg_toggled"]
 [connection signal="value_changed" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3/Volume_sfx" to="Menu/Menu" method="_on_Volume_sfx_value_changed"]
 [connection signal="toggled" from="Menu/Menu/MarginContainer/VBoxContainer/HBoxContainer3/Mute_sfx" to="Menu/Menu" method="_on_Mute_sfx_toggled"]
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]

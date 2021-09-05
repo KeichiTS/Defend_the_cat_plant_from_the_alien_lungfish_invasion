@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/cat_planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/shield.tscn" type="PackedScene" id=2]
@@ -39,13 +39,35 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=6]
-default_font = SubResource( 5 )
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
+outline_size = 2
+outline_color = Color( 0.745098, 0.376471, 0.635294, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+outline_size = 2
+outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=8]
+outline_size = 2
+outline_color = Color( 0.784314, 0.454902, 0.211765, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+outline_size = 2
+outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+outline_size = 2
+outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
 font_data = ExtResource( 5 )
 
 [node name="game" type="Node2D"]
@@ -184,7 +206,7 @@ margin_top = -150.0
 margin_right = 250.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 500, 300 )
-theme = SubResource( 6 )
+theme = SubResource( 5 )
 popup_exclusive = true
 script = ExtResource( 10 )
 __meta__ = {
@@ -215,7 +237,7 @@ margin_right = 287.0
 margin_bottom = 93.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -233,6 +255,7 @@ margin_top = 13.0
 margin_right = 94.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 94, 14 )
+custom_fonts/font = SubResource( 7 )
 text = "Volume"
 align = 1
 
@@ -251,6 +274,7 @@ tick_count = 7
 margin_left = 364.0
 margin_right = 492.0
 margin_bottom = 40.0
+custom_fonts/font = SubResource( 8 )
 text = "mute"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
@@ -265,6 +289,7 @@ margin_top = 13.0
 margin_right = 94.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 94, 14 )
+custom_fonts/font = SubResource( 9 )
 text = "Bkg music"
 align = 1
 
@@ -283,6 +308,7 @@ tick_count = 7
 margin_left = 364.0
 margin_right = 492.0
 margin_bottom = 40.0
+custom_fonts/font = SubResource( 8 )
 text = "mute"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
@@ -297,6 +323,7 @@ margin_top = 13.0
 margin_right = 94.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 94, 14 )
+custom_fonts/font = SubResource( 10 )
 text = "SFX"
 align = 1
 
@@ -315,6 +342,7 @@ tick_count = 7
 margin_left = 364.0
 margin_right = 492.0
 margin_bottom = 40.0
+custom_fonts/font = SubResource( 8 )
 text = "mute"
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

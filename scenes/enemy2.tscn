@@ -52,6 +52,7 @@ pt = 30
 [node name="sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

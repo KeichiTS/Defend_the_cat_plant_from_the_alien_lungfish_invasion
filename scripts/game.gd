@@ -16,6 +16,8 @@ var trans_bg4_status = 0
 
 
 func _ready():
+	$transition.play("event")
+	yield($transition,"animation_finished")
 	randomize()
 	$cat_planet.connect("hited",self,"on_hited") 
 	$cat_planet.connect("death",self, "on_death")

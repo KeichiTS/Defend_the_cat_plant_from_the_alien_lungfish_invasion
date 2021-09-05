@@ -47,7 +47,9 @@ func _process(delta):
 				bullb.dir = Vector2(-cos(rotation), -sin(rotation)).normalized()
 				get_parent().add_child(bullb)
 			status = cd
+			$anim.play("event")
 			$shoot_timer.start()
+			yield($anim,"animation_finished")
 	look_at(get_global_mouse_position())
 
 

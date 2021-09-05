@@ -26,7 +26,7 @@ func _on_collision_area_entered(area):
 	
 	elif area.is_in_group("upgrade"):
 		if area.status == 0:
-			if hp <= 5:
+			if hp < 5:
 				hp += 1
 				emit_signal("hited", hp)
 			

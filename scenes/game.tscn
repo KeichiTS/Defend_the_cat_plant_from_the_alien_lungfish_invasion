@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/cat_planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/shield.tscn" type="PackedScene" id=2]
@@ -39,30 +39,53 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="Animation" id=4]
+resource_name = "event2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=5]
 font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 4 )
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 outline_size = 2
 outline_color = Color( 0.745098, 0.376471, 0.635294, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=7]
-outline_size = 2
-outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
-font_data = ExtResource( 5 )
-
 [sub_resource type="DynamicFont" id=8]
 outline_size = 2
-outline_color = Color( 0.784314, 0.454902, 0.211765, 1 )
+outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=9]
 outline_size = 2
-outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
+outline_color = Color( 0.784314, 0.454902, 0.211765, 1 )
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=10]
@@ -70,9 +93,14 @@ outline_size = 2
 outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="DynamicFont" id=11]
+outline_size = 2
+outline_color = Color( 0.431373, 0.745098, 0.376471, 1 )
+font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="StyleBoxTexture" id=12]
+
+[sub_resource type="DynamicFont" id=13]
 size = 32
 outline_size = 2
 outline_color = Color( 0.270588, 0.596078, 0.329412, 1 )
@@ -175,9 +203,9 @@ autostart = true
 
 [node name="transition" type="AnimationPlayer" parent="."]
 anims/event = SubResource( 3 )
+anims/event2 = SubResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 800.0
 margin_bottom = 600.0
 color = Color( 0, 0, 0, 1 )
@@ -214,7 +242,7 @@ margin_top = -150.0
 margin_right = 250.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 500, 300 )
-theme = SubResource( 5 )
+theme = SubResource( 6 )
 popup_exclusive = true
 script = ExtResource( 10 )
 __meta__ = {
@@ -245,7 +273,7 @@ margin_right = 287.0
 margin_bottom = 93.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
 text = "Resume"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -263,7 +291,7 @@ margin_top = 13.0
 margin_right = 94.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 94, 14 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Volume"
 align = 1
 
@@ -282,7 +310,7 @@ tick_count = 7
 margin_left = 364.0
 margin_right = 492.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "mute"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
@@ -297,7 +325,7 @@ margin_top = 13.0
 margin_right = 94.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 94, 14 )
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
 text = "Bkg music"
 align = 1
 
@@ -316,7 +344,7 @@ tick_count = 7
 margin_left = 364.0
 margin_right = 492.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "mute"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Menu/MarginContainer/VBoxContainer"]
@@ -331,7 +359,7 @@ margin_top = 13.0
 margin_right = 94.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 94, 14 )
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
 text = "SFX"
 align = 1
 
@@ -350,7 +378,7 @@ tick_count = 7
 margin_left = 364.0
 margin_right = 492.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 text = "mute"
 
 [node name="play" type="Button" parent="."]
@@ -359,8 +387,8 @@ margin_left = 300.0
 margin_top = 545.0
 margin_right = 500.0
 margin_bottom = 585.0
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 12 )
+custom_styles/normal = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 disabled = true
 text = "RESTART"
 __meta__ = {

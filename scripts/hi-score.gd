@@ -24,5 +24,3 @@ func show_hiscores():
 		$timer.start()
 		yield($timer,"timeout")
 		a += 1
-		print(hs)
-	pass

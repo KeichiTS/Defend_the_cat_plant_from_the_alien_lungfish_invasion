@@ -132,10 +132,10 @@ func on_death():
 	
 	for hs in POINTS.hiscores:
 		if POINTS.points > hs.score:
-			hs.score = POINTS.points
+			hiscore = hs
 			index = 1
 			break
-		hiscore += 1
+		
 	
 	$spawn_timer.queue_free()
 	$spawn_timer_2.queue_free()
@@ -172,10 +172,13 @@ func _on_Volume_sfx_value_changed(value):
 	pass # Replace with function body.
 
 func on_name_selector_finished(val):
-	#var index = POINTS.hiscores.find(hiscore)
-	POINTS.hiscores[hiscore].nome = val
-	print(POINTS.hiscores)
+	var index = POINTS.hiscores.find(hiscore)
+	POINTS.hiscores.insert(index, {nome = val, score = POINTS.points})
+	POINTS.hiscores.resize(10)
 
 
 func _on_play_pressed():
-	get_tree().reload_current_scene()
+	$play.hide()
+	$transition.play("event2")
+	yield($transition,"animation_finished")
+	get_tree().change_scene("res://scenes/main.tscn")

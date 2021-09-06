@@ -4,7 +4,9 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVXWYZ0123456789_*#$ "
 
 var index = 0
 var letter = 0 
+
 signal finished(nome)
+
 
 func _ready():
 	set_process_input(true)
@@ -34,3 +36,12 @@ func _on_timer_timeout():
 		$container.get_child(letter).modulate.a = 0
 	else:
 		$container.get_child(letter).modulate.a = 1
+		
+		
+
+
+func _on_blink_text_timeout():
+	if $text.modulate.a > 0:
+		$text.modulate.a = 0
+	else:
+		$text.modulate.a = 1

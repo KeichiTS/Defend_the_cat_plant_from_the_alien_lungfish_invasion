@@ -19,6 +19,7 @@ func _process(delta):
 
 func _on_collision_area_entered(area):
 	if area.is_in_group("enemy"):
+		$hit_animation.play("event")
 		hp -= 1
 		emit_signal("hited", hp)
 		area.queue_free()
@@ -28,6 +29,7 @@ func _on_collision_area_entered(area):
 			queue_free()
 	
 	elif area.is_in_group("upgrade"):
+		$hit_animation.play("event2")
 		if area.status == 0:
 			if hp < 5:
 				hp += 1
@@ -39,6 +41,7 @@ func _on_collision_area_entered(area):
 			
 		area.queue_free()
 	
+	yield($hit_animation,"animation_finished")
 	
 func change_sprite():
 	if hp == 5:

@@ -113,8 +113,10 @@ script = ExtResource( 3 )
 [node name="background" type="Node2D" parent="."]
 
 [node name="bg1" type="ColorRect" parent="background"]
-margin_right = 800.0
-margin_bottom = 600.0
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 810.0
+margin_bottom = 610.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -207,7 +209,6 @@ anims/event = SubResource( 3 )
 anims/event2 = SubResource( 4 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 800.0
 margin_bottom = 600.0
 color = Color( 0, 0, 0, 1 )

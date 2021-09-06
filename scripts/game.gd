@@ -18,6 +18,8 @@ var trans_bg4_status = 0
 
 var hiscore = 0
 
+signal shake
+
 func _ready():
 	if !Music.is_playing:
 		Music.is_playing
@@ -65,6 +67,7 @@ func _process(delta):
 			
 func _on_spawn_timer_timeout():
 	var en = enemy.instance()
+	en.connect("shake",$Camera2D,"_on_game_shake")
 	var rect = randi()%2
 	if rect == 0:
 		en.scale.y *= -1
@@ -77,6 +80,7 @@ func _on_spawn_timer_timeout():
 
 func _on_spawn_timer_2_timeout():
 	var en = enemy2.instance()
+	en.connect("shake",$Camera2D,"_on_game_shake")
 	var rect = randi()%2
 	if rect == 0:
 		en.scale.y *= -1
@@ -88,6 +92,7 @@ func _on_spawn_timer_2_timeout():
 
 func _on_spawn_timer_3_timeout():
 	var en = enemy3.instance()
+	en.connect("shake",$Camera2D,"_on_game_shake")
 	var rect = randi()%2
 	if rect == 0:
 		en.scale.y *= -1
@@ -123,6 +128,8 @@ func spawn_spot():
 
 func on_hited(hp):
 	$life.text = "LIFE:\n" + str(hp)
+	emit_signal("shake")
+	
 
 
 func on_death():

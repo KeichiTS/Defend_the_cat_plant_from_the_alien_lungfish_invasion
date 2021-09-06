@@ -136,7 +136,7 @@ anims/event2 = SubResource( 2 )
 
 [node name="Logo" type="Sprite" parent="."]
 position = Vector2( 400, 350 )
-rotation = -0.00902745
+rotation = -0.0705888
 texture = ExtResource( 5 )
 
 [node name="logo_transition" type="AnimationPlayer" parent="."]

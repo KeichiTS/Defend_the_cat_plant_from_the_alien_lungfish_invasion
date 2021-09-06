@@ -8,8 +8,8 @@ var status setget set_status
 
 var hiscores = [
 	{nome = "KEI", score = 2230},
+	{nome = "JPP", score = 1850},
 	{nome = "RIK", score = 1120},
-	{nome = "CCC", score = 800},
 	{nome = "DDD", score = 700},
 	{nome = "EEE", score = 600},
 	{nome = "FFF", score = 500},
